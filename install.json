@@ -30,7 +30,7 @@
               "title": "Location",
               "order": 1,
               "type": "string",
-              "format": "radio",
+              "format": "radios",
               "enum": [
                 "headers",
                 "body",
@@ -238,7 +238,17 @@
               "default": "Inconsolata"
             }
           }
-        }
+        },
+        "default": [{
+          "location": "headers",
+          "fontType": "serif",
+          "serif": "Slabo 27px"
+        },
+        {
+          "location": "body",
+          "fontType": "sansSerif",
+          "sansSerif": "Open Sans"
+        }]
       }
     }
   }
