@@ -242,12 +242,20 @@
         "default": [{
           "location": "headers",
           "fontType": "serif",
-          "serif": "Slabo 27px"
+          "serif": "Slabo 27px",
+          "sansSerif": "Open Sans",
+          "display": "Lobster",
+          "handwriting": "Indie Flower",
+          "monospace": "Inconsolata"
         },
         {
           "location": "body",
           "fontType": "sansSerif",
-          "sansSerif": "Open Sans"
+          "serif": "Slabo 27px",
+          "sansSerif": "Open Sans",
+          "display": "Lobster",
+          "handwriting": "Indie Flower",
+          "monospace": "Inconsolata"
         }]
       }
     }
