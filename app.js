@@ -1,16 +1,21 @@
 (function () {
   if (!window.addEventListener) return // Check for IE9+
 
+  const googleFonts = document.createElement("link") // Remove me >:(
+  const style = document.createElement("style")
+  const WebFontConfig = {
+    google: {
+      families: []
+    }
+  }
+
   let options = INSTALL_OPTIONS
 
-  const googleFonts = document.createElement("link")
-  const style = document.createElement("style")
-
-  document.head.appendChild(googleFonts)
+  document.head.appendChild(googleFonts) // Remove me >:(
   document.head.appendChild(style)
 
   function updateElements() {
-    style.innerHTML = " "
+    style.innerHTML = ""
     const {fonts} = options
 
     console.log(fonts)
@@ -21,6 +26,13 @@
     googleFonts.className = "hello"
     googleFonts.async = "true"
     googleFonts.rel = "stylesheet"
+
+    fonts.forEach(attrs => {
+      // WebFontConfig.google.families.push(whatever)
+      // stylesheets stuff
+    })
+
+    // WebFont.load(WebFontConfig)
 
     fonts.forEach(attrs => {
       console.log(attrs)
@@ -114,11 +126,22 @@
     })
   }
 
+  function bootstrap () {
+    const googleFontLoader = document.createElement("script")
+    googleFontLoader.src = "https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"
+    googleFontLoader.type = "text/javascript"
+    googleFontLoader.async = "true"
+
+    googleFontLoader.addEventListener("load", updateElements)
+
+    document.head.appendChild(googleFontLoader)
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", updateElements)
+    document.addEventListener("DOMContentLoaded", bootstrap)
   }
   else {
-    updateElements()
+    bootstrap()
   }
 
   window.INSTALL_SCOPE = {
