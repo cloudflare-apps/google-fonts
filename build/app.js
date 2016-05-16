@@ -1,8 +1,21 @@
 "use strict";
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 (function () {
   if (!window.addEventListener) return; // Check for IE9+
 
+  var FONT_TYPE = {
+    serif: "serif",
+    sansSerif: "sans-serif",
+    display: "cursive",
+    handwriting: "cursive",
+    monospace: "monospace"
+  };
+  var SELECTORS = {
+    headers: "h1, h2, h3, h4, h5, h6, header",
+    body: "p, div"
+  };
   var style = document.createElement("style");
   var WebFontConfig = {
     google: {
@@ -12,8 +25,6 @@
 
   var options = INSTALL_OPTIONS;
 
-  document.head.appendChild(style);
-
   function updateElements() {
     style.innerHTML = "";
     WebFontConfig.google.families = [];
@@ -21,32 +32,21 @@
     var fonts = _options.fonts;
 
 
-    fonts.forEach(function (attrs) {
-      var FONT_FAMILY = {
-        serif: attrs.fontFamilySerif,
-        sansSerif: attrs.fontFamilySansSerif,
-        display: attrs.fontFamilyDisplay,
-        handwriting: attrs.fontFamilyHandwriting,
-        monospace: attrs.fontFamilyMonospace
-      };
-      var FONT_TYPE = {
-        serif: "serif",
-        sansSerif: "sans-serif",
-        display: "cursive",
-        handwriting: "cursive",
-        monospace: "monospace"
-      };
-      var LOCATION = {
-        headers: "h1, h2, h3, h4, h5, h6, header",
-        body: "p, div",
-        custom: attrs.selector
-      };
+    fonts.forEach(function (_ref) {
+      var fontType = _ref.fontType;
+      var location = _ref.location;
 
-      WebFontConfig.google.families.push(FONT_FAMILY[attrs.fontType]);
+      var attrs = _objectWithoutProperties(_ref, ["fontType", "location"]);
 
-      style.innerHTML += "\n        " + LOCATION[attrs.location] + " {\n          font-family: '" + FONT_FAMILY[attrs.fontType] + "', " + FONT_TYPE[attrs.fontType] + ";\n        }";
+      var fontFamily = attrs[fontType];
+      var selector = location === "custom" ? attrs.selector : SELECTORS[location];
+
+      WebFontConfig.google.families.push(fontFamily);
+
+      style.innerHTML += "\n        " + selector + " {\n          font-family: '" + fontFamily + "', " + FONT_TYPE[fontType] + ";\n        }\n      ";
     });
-    WebFont.load(WebFontConfig);
+
+    window.WebFont.load(WebFontConfig);
   }
 
   function bootstrap() {
@@ -59,6 +59,7 @@
     googleFontLoader.addEventListener("load", updateElements);
 
     document.head.appendChild(googleFontLoader);
+    document.head.appendChild(style);
   }
 
   if (document.readyState === "loading") {

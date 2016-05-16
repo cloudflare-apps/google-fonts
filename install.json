@@ -72,7 +72,7 @@
                 },
               "default": "serif"
               },
-            "fontFamilySerif": {
+            "serif": {
               "title": "Font Family",
               "order": 4,
               "showIf": {
@@ -105,7 +105,7 @@
               },
               "default": "Slabo 27px"
             },
-            "fontFamilySansSerif": {
+            "sansSerif": {
               "title": "Font Family",
               "order": 5,
               "showIf": {
@@ -138,7 +138,7 @@
               },
               "default": "Open Sans"
             },
-            "fontFamilyDisplay": {
+            "display": {
               "title": "Font Family",
               "order": 6,
               "showIf": {
@@ -171,7 +171,7 @@
               },
               "default": "Lobster"
             },
-            "fontFamilyHandwriting": {
+            "handwriting": {
               "title": "Font Family",
               "order": 7,
               "showIf": {
@@ -204,7 +204,7 @@
               },
               "default": "Indie Flower"
             },
-            "fontFamilyMonospace": {
+            "monospace": {
               "title": "Font Family",
               "order": 8,
               "showIf": {

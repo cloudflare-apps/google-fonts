@@ -1,6 +1,17 @@
 (function () {
   if (!window.addEventListener) return // Check for IE9+
 
+  const FONT_TYPE = {
+    serif: "serif",
+    sansSerif: "sans-serif",
+    display: "cursive",
+    handwriting: "cursive",
+    monospace: "monospace"
+  }
+  const SELECTORS = {
+    headers: "h1, h2, h3, h4, h5, h6, header",
+    body: "p, div"
+  }
   const style = document.createElement("style")
   const WebFontConfig = {
     google: {
@@ -10,42 +21,25 @@
 
   let options = INSTALL_OPTIONS
 
-  document.head.appendChild(style)
-
   function updateElements() {
     style.innerHTML = ""
     WebFontConfig.google.families = []
     const {fonts} = options
 
-    fonts.forEach(attrs => {
-      const FONT_FAMILY = {
-        serif: attrs.fontFamilySerif,
-        sansSerif: attrs.fontFamilySansSerif,
-        display: attrs.fontFamilyDisplay,
-        handwriting: attrs.fontFamilyHandwriting,
-        monospace: attrs.fontFamilyMonospace
-      }
-      const FONT_TYPE = {
-        serif: "serif",
-        sansSerif: "sans-serif",
-        display: "cursive",
-        handwriting: "cursive",
-        monospace: "monospace"
-      }
-      const LOCATION = {
-        headers: "h1, h2, h3, h4, h5, h6, header",
-        body: "p, div",
-        custom: attrs.selector
-      }
+    fonts.forEach(({fontType, location, ...attrs}) => {
+      const fontFamily = attrs[fontType]
+      const selector = location === "custom" ? attrs.selector : SELECTORS[location]
 
-      WebFontConfig.google.families.push(FONT_FAMILY[attrs.fontType])
+      WebFontConfig.google.families.push(fontFamily)
 
       style.innerHTML += `
-        ${LOCATION[attrs.location]} {
-          font-family: '${FONT_FAMILY[attrs.fontType]}', ${FONT_TYPE[attrs.fontType]};
-        }`
+        ${selector} {
+          font-family: '${fontFamily}', ${FONT_TYPE[fontType]};
+        }
+      `
     })
-    WebFont.load(WebFontConfig)
+
+    window.WebFont.load(WebFontConfig)
   }
 
   function bootstrap () {
@@ -58,6 +52,7 @@
     googleFontLoader.addEventListener("load", updateElements)
 
     document.head.appendChild(googleFontLoader)
+    document.head.appendChild(style)
   }
 
   if (document.readyState === "loading") {
