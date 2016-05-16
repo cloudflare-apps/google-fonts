@@ -17,5 +17,246 @@
     ]
   },
   "options": {
+    "properties": {
+      "fonts": {
+        "order": 1,
+        "type": "array",
+        "maxItems": 3,
+        "title": "Fonts",
+        "items": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "title": "Location",
+              "order": 1,
+              "type": "string",
+              "format": "radio",
+              "enum": [
+                "headers",
+                "body",
+                "custom"
+              ],
+              "enumNames": {
+                "headers": "Headers",
+                "body": "Body",
+                "custom": "Custom"
+              },
+              "default": "headers"
+            },
+            "selector": {
+              "title": "Custom selection",
+              "order": 2,
+              "format": "selector",
+              "type": "string",
+              "showIf": {
+                "fonts[].location": "custom"
+              }
+            },
+            "fontType": {
+              "title": "Font Type",
+              "order": 3,
+              "type": "string",
+              "enum": [
+                "serif",
+                "sans-serif",
+                "display",
+                "handwriting",
+                "monospace"
+              ],
+              "enumNames": {
+                "serif": "Serif",
+                "sans-serif": "Sans Serif",
+                "display": "Display",
+                "handwriting": "Handwriting",
+                "monospace": "Monospace"
+                },
+              "default": "serif"
+              },
+            "fontFamilySerif": {
+              "title": "Font Family",
+              "order": 4,
+              "showIf": {
+                "fonts[].fontType": "serif"
+                },
+              "type": "string",
+              "enum": [
+                "Slabo+27px",
+                "Lora",
+                "Roboto+Slab",
+                "Droid+Serif",
+                "Merriweather",
+                "PT+Serif",
+                "Playfair+Display",
+                "Bitter",
+                "Arvo",
+                "Noto+Serif"
+              ],
+              "enumNames": {
+                "Slabo+27px": "Slabo 27px",
+                "Lora": "Lora",
+                "Roboto+Slab": "Roboto Slab",
+                "Droid+Serif": "Droid Serif",
+                "Merriweather": "Merriweather",
+                "PT+Serif": "PT Serif",
+                "Playfair+Display": "Playfair Display",
+                "Bitter": "Bitter",
+                "Arvo": "Arvo",
+                "Noto+Serif": "Noto Serif"
+              },
+              "default": "Slabo+27px"
+            },
+            "fontFamilySansSerif": {
+              "title": "Font Family",
+              "order": 5,
+              "showIf": {
+                "fonts[].fontType": "sans-serif"
+                },
+              "type": "string",
+              "enum": [
+                "Open+Sans",
+                "Roboto",
+                "Lato",
+                "Oswald",
+                "Roboto+Condensed",
+                "Source+Sans+Pro",
+                "Montserrat",
+                "Raleway",
+                "PT+Sans",
+                "Droid+Sans"
+              ],
+              "enumNames": {
+                "Open+Sans": "Open Sans",
+                "Roboto": "Roboto",
+                "Lato": "Lato",
+                "Oswald": "Oswald",
+                "Roboto+Condensed": "Roboto Condensed",
+                "Source+Sans+Pro": "Source Sans Pro",
+                "Montserrat": "Montserrat",
+                "Raleway": "Raleway",
+                "PT+Sans": "PT Sans",
+                "Droid+Sans": "Droid Sans"
+              },
+              "default": "Open+Sans"
+            },
+            "fontFamilyDisplay": {
+              "title": "Font Family",
+              "order": 6,
+              "showIf": {
+                "fonts[].fontType": "display"
+                },
+              "type": "string",
+              "enum": [
+                "Lobster",
+                "Passion+One",
+                "Poiret+One",
+                "Righteous",
+                "Chewy",
+                "Bangers",
+                "Patua+One",
+                "Abril+Fatface",
+                "Sigmar+One",
+                "Comfortaa"
+              ],
+              "enumNames": {
+                "Lobster": "Lobster",
+                "Passion+One": "Passion One",
+                "Poiret+One": "Poiret One",
+                "Righteous": "Righteous",
+                "Chewy": "Chewy",
+                "Bangers": "Bangers",
+                "Patua+One": "Patua One",
+                "Abril+Fatface": "Abril Fatface",
+                "Sigmar+One": "Sigmar One",
+                "Comfortaa": "Comfortaa"
+              },
+              "default": "Lobster"
+            },
+            "fontFamilyHandwriting": {
+              "title": "Font Family",
+              "order": 7,
+              "showIf": {
+                "fonts[].fontType": "handwriting"
+                },
+              "type": "string",
+              "enum": [
+                "Indie+Flower",
+                "Covered+By+Your+Grace",
+                "Pacifico",
+                "Shadows+Into+Light",
+                "Dancing+Script",
+                "Amatic+SC",
+                "Architects+Daughter",
+                "Kaushan+Script",
+                "Gloria+Hallelujah",
+                "Courgette"
+              ],
+              "enumNames": {
+                "Indie+Flower": "Indie Flower",
+                "Covered+By+Your+Grace": "Covered By Your Grace",
+                "Pacifico": "Pacifico",
+                "Shadows+Into+Light": "Shadows Into Light",
+                "Dancing+Script": "Dancing Script",
+                "Amatic+SC": "Amatic SC",
+                "Architects+Daughter": "Architects Daughter",
+                "Kaushan+Script": "Kaushan Script",
+                "Gloria+Hallelujah": "Gloria Hallelujah",
+                "Courgette": "Courgette"
+              },
+              "default": "Indie+Flower"
+            },
+            "fontFamilyMonospace": {
+              "title": "Font Family",
+              "order": 8,
+              "showIf": {
+                "fonts[].fontType": "monospace"
+                },
+              "type": "string",
+              "enum": [
+                "Inconsolata",
+                "Roboto Mono",
+                "Source+Code+Pro",
+                "Droid+Sans+Mono",
+                "PT+Mono",
+                "Ubuntu+Mono",
+                "Cousine",
+                "Oxygen+Mono",
+                "VT323",
+                "Anonymous+Pro"
+              ],
+              "enumNames": {
+                "Inconsolata": "Inconsolata",
+                "Roboto Mono": "Roboto Mono",
+                "Source+Code+Pro": "Source Code Pro",
+                "Droid+Sans+Mono": "Droid Sans Mono",
+                "PT+Mono": "PT Mono",
+                "Ubuntu+Mono": "Ubuntu Mono",
+                "Cousine": "Cousine",
+                "Oxygen+Mono": "Oxygen+Mono",
+                "VT323": "VT323",
+                "Anonymous+Pro": "Anonymous Pro"
+              },
+              "default": "Inconsolata"
+            },
+            "fontWeight": {
+              "title": "Font Weight",
+              "order": 9,
+              "type": "string",
+              "format": "radio",
+              "enum": [
+                ":300",
+                ":400",
+                ":700"
+              ],
+              "enumNames": {
+                ":400": "Normal",
+                ":300": "Light",
+                ":700": "Bold"
+              },
+              "default": ":400"
+            }
+          }
+        }
+      }
+    }
   }
 }
