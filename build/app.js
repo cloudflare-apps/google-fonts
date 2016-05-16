@@ -3,102 +3,68 @@
 (function () {
   if (!window.addEventListener) return; // Check for IE9+
 
+  var style = document.createElement("style");
+  var WebFontConfig = {
+    google: {
+      families: []
+    }
+  };
+
   var options = INSTALL_OPTIONS;
 
-  var googleFonts = document.createElement("link");
-  var style = document.createElement("style");
-
-  document.head.appendChild(googleFonts);
   document.head.appendChild(style);
 
   function updateElements() {
-    style.innerHTML = " ";
+    style.innerHTML = "";
+    WebFontConfig.google.families = [];
     var _options = options;
     var fonts = _options.fonts;
 
 
-    console.log(fonts);
-
-    var GOOGLE_FONTS_SOURCE = "https://fonts.googleapis.com/css?family=";
-
-    googleFonts.type = "text/javascript";
-    googleFonts.className = "hello";
-    googleFonts.async = "true";
-    googleFonts.rel = "stylesheet";
-
     fonts.forEach(function (attrs) {
-      console.log(attrs);
-      var family = void 0;
+      var FONT_FAMILY = {
+        serif: attrs.fontFamilySerif,
+        sansSerif: attrs.fontFamilySansSerif,
+        display: attrs.fontFamilyDisplay,
+        handwriting: attrs.fontFamilyHandwriting,
+        monospace: attrs.fontFamilyMonospace
+      };
+      var FONT_TYPE = {
+        serif: "serif",
+        sansSerif: "sans-serif",
+        display: "cursive",
+        handwriting: "cursive",
+        monospace: "monospace"
+      };
+      var LOCATION = {
+        headers: "h1, h2, h3, h4, h5, h6, header",
+        body: "p, div",
+        custom: attrs.selector
+      };
 
-      if (attrs.fontType === "serif") {
-        family = attrs.fontFamilySerif;
-        if (fonts.length === 1) {
-          GOOGLE_FONTS_SOURCE += family + attrs.fontWeight;
-          console.log(GOOGLE_FONTS_SOURCE);
-        } else {
-          GOOGLE_FONTS_SOURCE += family + attrs.fontWeight + "|";
-          console.log(GOOGLE_FONTS_SOURCE);
-        }
-      } else if (attrs.fontType === "sans-serif") {
-        family = attrs.fontFamilySansSerif;
-        if (fonts.length === 1) {
-          GOOGLE_FONTS_SOURCE += family + attrs.fontWeight;
-          console.log(GOOGLE_FONTS_SOURCE);
-        } else {
-          GOOGLE_FONTS_SOURCE += family + attrs.fontWeight + "|";
-          console.log(GOOGLE_FONTS_SOURCE);
-        }
-      } else if (attrs.fontType === "display") {
-        family = attrs.fontFamilyDisplay;
-        if (fonts.length === 1) {
-          GOOGLE_FONTS_SOURCE += family + attrs.fontWeight;
-          console.log(GOOGLE_FONTS_SOURCE);
-        } else {
-          GOOGLE_FONTS_SOURCE += family + attrs.fontWeight + "|";
-          console.log(GOOGLE_FONTS_SOURCE);
-        }
-      } else if (attrs.fontType === "handwriting") {
-        family = attrs.fontFamilyHandwriting;
-        if (fonts.length === 1) {
-          GOOGLE_FONTS_SOURCE += family + attrs.fontWeight;
-          console.log(GOOGLE_FONTS_SOURCE);
-        } else {
-          GOOGLE_FONTS_SOURCE += family + attrs.fontWeight + "|";
-          console.log(GOOGLE_FONTS_SOURCE);
-        }
-      } else if (attrs.fontType === "monospace") {
-        family = attrs.fontFamilyMonospace;
-        if (fonts.length === 1) {
-          GOOGLE_FONTS_SOURCE += family + attrs.fontWeight;
-          console.log(GOOGLE_FONTS_SOURCE);
-        } else {
-          GOOGLE_FONTS_SOURCE += family + attrs.fontWeight + "|";
-          console.log(GOOGLE_FONTS_SOURCE);
-        }
-      }
-      googleFonts.href = GOOGLE_FONTS_SOURCE;
+      WebFontConfig.google.families.push(FONT_FAMILY[attrs.fontType]);
 
-      var splitFamily = family.split("+");
-      var newFamily = splitFamily.join(" ");
-
-      var weight = attrs.fontWeight;
-      var splitWeight = weight.split(":");
-      var newWeight = splitWeight[1];
-
-      if (attrs.location === "headers") {
-        style.innerHTML += "\n          h1, h2, h3, h4, h5, h6, header {\n            font-family: '" + newFamily + "', " + attrs.fontType + ";\n            font-weight: " + newWeight + ";\n          }";
-      } else if (attrs.location === "body") {
-        style.innerHTML += "\n          p, div {\n            font-family: '" + newFamily + "', " + attrs.fontType + ";\n            font-weight: " + newWeight + ";\n          }";
-      } else if (attrs.location === "custom") {
-        style.innerHTML += "\n          " + attrs.selector + " {\n            font-family: '" + newFamily + "', " + attrs.fontType + ";\n            font-weight: " + newWeight + ";\n          }";
-      }
+      style.innerHTML += "\n        " + LOCATION[attrs.location] + " {\n          font-family: '" + FONT_FAMILY[attrs.fontType] + "', " + FONT_TYPE[attrs.fontType] + ";\n        }";
     });
+    WebFont.load(WebFontConfig);
+  }
+
+  function bootstrap() {
+    var googleFontLoader = document.createElement("script");
+
+    googleFontLoader.src = "https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js";
+    googleFontLoader.type = "text/javascript";
+    googleFontLoader.async = "true";
+
+    googleFontLoader.addEventListener("load", updateElements);
+
+    document.head.appendChild(googleFontLoader);
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", updateElements);
+    document.addEventListener("DOMContentLoaded", bootstrap);
   } else {
-    updateElements();
+    bootstrap();
   }
 
   window.INSTALL_SCOPE = {
