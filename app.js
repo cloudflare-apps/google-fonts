@@ -17,10 +17,7 @@
 
   let options = INSTALL_OPTIONS
 
-  function updateElements() {
-    stylesheet.innerHTML = ""
-    stylesheet.parentNode && stylesheet.parentNode.removeChild(stylesheet)
-
+  function updateElement() {
     const {fonts} = options
 
     window.WebFont.load({
@@ -49,7 +46,7 @@
     googleFontLoader.src = "https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"
     googleFontLoader.async = true
 
-    googleFontLoader.addEventListener("load", updateElements)
+    googleFontLoader.addEventListener("load", updateElement)
 
     document.head.appendChild(googleFontLoader)
   }
@@ -64,7 +61,11 @@
   window.INSTALL_SCOPE = {
     setOptions(nextOptions) {
       options = nextOptions
-      updateElements()
+
+      stylesheet.innerHTML = ""
+      stylesheet.parentNode && stylesheet.parentNode.removeChild(stylesheet)
+
+      updateElement()
     }
   }
 }())

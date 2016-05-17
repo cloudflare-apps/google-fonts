@@ -23,10 +23,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
   var options = INSTALL_OPTIONS;
 
-  function updateElements() {
-    stylesheet.innerHTML = "";
-    stylesheet.parentNode && stylesheet.parentNode.removeChild(stylesheet);
-
+  function updateElement() {
     var _options = options;
     var fonts = _options.fonts;
 
@@ -70,7 +67,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
     googleFontLoader.src = "https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js";
     googleFontLoader.async = true;
 
-    googleFontLoader.addEventListener("load", updateElements);
+    googleFontLoader.addEventListener("load", updateElement);
 
     document.head.appendChild(googleFontLoader);
   }
@@ -84,7 +81,11 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
   window.INSTALL_SCOPE = {
     setOptions: function setOptions(nextOptions) {
       options = nextOptions;
-      updateElements();
+
+      stylesheet.innerHTML = "";
+      stylesheet.parentNode && stylesheet.parentNode.removeChild(stylesheet);
+
+      updateElement();
     }
   };
 })();
