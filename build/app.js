@@ -35,9 +35,14 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
           var attrs = _objectWithoutProperties(_ref, ["style", "location"]);
 
           var fontFamily = attrs[style];
+          var splitFamily = fontFamily.split("+");
+          var joinFamily = splitFamily.join(" ");
+          var finalFamily = joinFamily.split(":")[0];
+
+          console.log(finalFamily);
           var selector = location === "custom" ? attrs.selector : SELECTORS[location];
 
-          return rules + ("\n            " + selector + " {\n              font-family: '" + fontFamily + "', " + FONT_TYPE[style] + ";\n            }\n          ");
+          return rules + ("\n            " + selector + " {\n              font-family: '" + finalFamily + "', " + FONT_TYPE[style] + ";\n            }\n          ");
         }, "");
       },
 
@@ -51,6 +56,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
         })
       }
     });
+    console.log(stylesheet);
   }
 
   function bootstrap() {
