@@ -18,6 +18,9 @@
   let options = INSTALL_OPTIONS
 
   function updateElements() {
+    stylesheet.innerHTML = ""
+    stylesheet.parentNode && stylesheet.parentNode.removeChild(stylesheet)
+
     const {fonts} = options
 
     window.WebFont.load({
@@ -33,6 +36,8 @@
             }
           `
         }, "")
+
+        document.head.appendChild(stylesheet)
       },
       google: {
         families: fonts.map(({style, ...attrs}) => attrs[style])
@@ -47,7 +52,6 @@
     googleFontLoader.addEventListener("load", updateElements)
 
     document.head.appendChild(googleFontLoader)
-    document.head.appendChild(stylesheet)
   }
 
   if (document.readyState === "loading") {

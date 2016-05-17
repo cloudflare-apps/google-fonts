@@ -24,6 +24,9 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
   var options = INSTALL_OPTIONS;
 
   function updateElements() {
+    stylesheet.innerHTML = "";
+    stylesheet.parentNode && stylesheet.parentNode.removeChild(stylesheet);
+
     var _options = options;
     var fonts = _options.fonts;
 
@@ -47,6 +50,8 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
           return rules + ("\n            " + selector + " {\n              font-family: '" + fontFamily.replace("+", " ") + "', " + FONT_TYPE[style] + ";\n            }\n          ");
         }, "");
+
+        document.head.appendChild(stylesheet);
       },
 
       google: {
@@ -68,7 +73,6 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
     googleFontLoader.addEventListener("load", updateElements);
 
     document.head.appendChild(googleFontLoader);
-    document.head.appendChild(stylesheet);
   }
 
   if (document.readyState === "loading") {
