@@ -30,6 +30,7 @@
               "title": "Location",
               "order": 1,
               "type": "string",
+              "description": "Choose where the font appears",
               "format": "radios",
               "enum": [
                 "headers",
@@ -37,9 +38,9 @@
                 "custom"
               ],
               "enumNames": {
-                "headers": "Headers",
-                "body": "Body",
-                "custom": "Custom"
+                "headers": "Headers and titles",
+                "body": "All main content",
+                "custom": "Custom selection"
               },
               "default": "headers"
             },
@@ -52,31 +53,31 @@
                 "fonts[].location": "custom"
               }
             },
-            "fontType": {
-              "title": "Font Type",
+            "style": {
+              "title": "Style",
               "order": 3,
               "type": "string",
               "enum": [
                 "serif",
                 "sansSerif",
-                "display",
+                "fancy",
                 "handwriting",
                 "monospace"
               ],
               "enumNames": {
                 "serif": "Serif",
                 "sansSerif": "Sans Serif",
-                "display": "Display",
+                "fancy": "Fancy",
                 "handwriting": "Handwriting",
                 "monospace": "Monospace"
                 },
               "default": "serif"
               },
             "serif": {
-              "title": "Font Family",
+              "title": "Name",
               "order": 4,
               "showIf": {
-                "fonts[].fontType": "serif"
+                "fonts[].style": "serif"
                 },
               "type": "string",
               "enum": [
@@ -106,10 +107,10 @@
               "default": "Slabo 27px"
             },
             "sansSerif": {
-              "title": "Font Family",
+              "title": "Name",
               "order": 5,
               "showIf": {
-                "fonts[].fontType": "sansSerif"
+                "fonts[].style": "sansSerif"
                 },
               "type": "string",
               "enum": [
@@ -138,11 +139,11 @@
               },
               "default": "Open Sans"
             },
-            "display": {
-              "title": "Font Family",
+            "fancy": {
+              "title": "Name",
               "order": 6,
               "showIf": {
-                "fonts[].fontType": "display"
+                "fonts[].style": "fancy"
                 },
               "type": "string",
               "enum": [
@@ -172,10 +173,10 @@
               "default": "Lobster"
             },
             "handwriting": {
-              "title": "Font Family",
+              "title": "Name",
               "order": 7,
               "showIf": {
-                "fonts[].fontType": "handwriting"
+                "fonts[].style": "handwriting"
                 },
               "type": "string",
               "enum": [
@@ -205,10 +206,10 @@
               "default": "Indie Flower"
             },
             "monospace": {
-              "title": "Font Family",
+              "title": "Name",
               "order": 8,
               "showIf": {
-                "fonts[].fontType": "monospace"
+                "fonts[].style": "monospace"
                 },
               "type": "string",
               "enum": [
@@ -241,19 +242,19 @@
         },
         "default": [{
           "location": "headers",
-          "fontType": "serif",
+          "style": "serif",
           "serif": "Slabo 27px",
           "sansSerif": "Open Sans",
-          "display": "Lobster",
+          "fancy": "Lobster",
           "handwriting": "Indie Flower",
           "monospace": "Inconsolata"
         },
         {
           "location": "body",
-          "fontType": "sansSerif",
+          "style": "sansSerif",
           "serif": "Slabo 27px",
           "sansSerif": "Open Sans",
-          "display": "Lobster",
+          "fancy": "Lobster",
           "handwriting": "Indie Flower",
           "monospace": "Inconsolata"
         }]
