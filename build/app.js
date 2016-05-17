@@ -14,47 +14,48 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
   };
   var SELECTORS = {
     headers: "h1, h2, h3, h4, h5, h6, header",
-    body: "p, div"
+    body: "body"
   };
+  var googleFontLoader = document.createElement("script");
   var style = document.createElement("style");
-  var WebFontConfig = {
-    google: {
-      families: []
-    }
-  };
 
   var options = INSTALL_OPTIONS;
 
   function updateElements() {
-    style.innerHTML = "";
-    WebFontConfig.google.families = [];
     var _options = options;
     var fonts = _options.fonts;
 
 
-    fonts.forEach(function (_ref) {
-      var fontType = _ref.fontType;
-      var location = _ref.location;
+    window.WebFont.load({
+      active: function active() {
+        style.innerHTML = fonts.reduce(function (rules, _ref) {
+          var fontType = _ref.fontType;
+          var location = _ref.location;
 
-      var attrs = _objectWithoutProperties(_ref, ["fontType", "location"]);
+          var attrs = _objectWithoutProperties(_ref, ["fontType", "location"]);
 
-      var fontFamily = attrs[fontType];
-      var selector = location === "custom" ? attrs.selector : SELECTORS[location];
+          var fontFamily = attrs[fontType];
+          var selector = location === "custom" ? attrs.selector : SELECTORS[location];
 
-      WebFontConfig.google.families.push(fontFamily);
+          return rules + ("\n            " + selector + " {\n              font-family: '" + fontFamily + "', " + FONT_TYPE[fontType] + ";\n            }\n          ");
+        }, "");
+      },
 
-      style.innerHTML += "\n        " + selector + " {\n          font-family: '" + fontFamily + "', " + FONT_TYPE[fontType] + ";\n        }\n      ";
+      google: {
+        families: fonts.map(function (_ref2) {
+          var fontType = _ref2.fontType;
+
+          var attrs = _objectWithoutProperties(_ref2, ["fontType"]);
+
+          return attrs[fontType];
+        })
+      }
     });
-
-    window.WebFont.load(WebFontConfig);
   }
 
   function bootstrap() {
-    var googleFontLoader = document.createElement("script");
-
     googleFontLoader.src = "https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js";
-    googleFontLoader.type = "text/javascript";
-    googleFontLoader.async = "true";
+    googleFontLoader.async = true;
 
     googleFontLoader.addEventListener("load", updateElements);
 
