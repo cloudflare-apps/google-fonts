@@ -81,30 +81,30 @@
                 },
               "type": "string",
               "enum": [
-                "Slabo 27px",
-                "Lora",
-                "Roboto Slab",
-                "Droid Serif",
-                "Merriweather",
-                "PT Serif",
-                "Playfair Display",
-                "Bitter",
-                "Arvo",
-                "Noto Serif"
+                "Slabo+27px::latin",
+                "Lora:400,400italic,700:latin",
+                "Roboto+Slab:400,700:latin",
+                "Droid+Serif:400,400italic,700:latin",
+                "Merriweather:400,400italic,700:latin",
+                "PT+Serif:400,400italic,700:latin",
+                "Playfair+Display:400,400italic,700:latin",
+                "Bitter:400,400italic,700:latin",
+                "Arvo:400,400italic,700:latin",
+                "Noto+Serif:400,400italic,700:latin"
               ],
               "enumNames": {
-                "Slabo 27px": "Slabo 27px",
-                "Lora": "Lora",
-                "Roboto Slab": "Roboto Slab",
-                "Droid Serif": "Droid Serif",
-                "Merriweather": "Merriweather",
-                "PT Serif": "PT Serif",
-                "Playfair Display": "Playfair Display",
-                "Bitter": "Bitter",
-                "Arvo": "Arvo",
-                "Noto Serif": "Noto Serif"
+                "Slabo+27px::latin": "Slabo 27px",
+                "Lora:400,400italic,700:latin": "Lora",
+                "Roboto+Slab:400,700:latin": "Roboto Slab",
+                "Droid+Serif:400,400italic,700:latin": "Droid Serif",
+                "Merriweather:400,400italic,700:latin": "Merriweather",
+                "PT+Serif:400,400italic,700:latin": "PT Serif",
+                "Playfair+Display:400,400italic,700:latin": "Playfair Display",
+                "Bitter:400,400italic,700:latin": "Bitter",
+                "Arvo:400,400italic,700:latin": "Arvo",
+                "Noto+Serif:400,400italic,700:latin": "Noto Serif"
               },
-              "default": "Slabo 27px"
+              "default": "Slabo+27px::latin"
             },
             "sansSerif": {
               "title": "Name",
@@ -114,30 +114,30 @@
                 },
               "type": "string",
               "enum": [
-                "Open Sans",
-                "Roboto",
-                "Lato",
-                "Oswald",
-                "Roboto Condensed",
-                "Source Sans Pro",
-                "Montserrat",
-                "Raleway",
-                "PT Sans",
-                "Droid Sans"
+                "Open+Sans:400,400italic,700:latin",
+                "Roboto:400,400italic,700:latin",
+                "Lato:400,400italic,700:latin",
+                "Oswald:400,700:latin",
+                "Roboto+Condensed:400,400italic,700:latin",
+                "Source+Sans+Pro:400,400italic,700:latin",
+                "Montserrat:400,700:latin",
+                "Raleway:400,400italic,700:latin",
+                "PT+Sans:400,400italic,700:latin",
+                "Droid+Sans:400,700:latin"
               ],
               "enumNames": {
-                "Open Sans": "Open Sans",
-                "Roboto": "Roboto",
-                "Lato": "Lato",
-                "Oswald": "Oswald",
-                "Roboto Condensed": "Roboto Condensed",
-                "Source Sans Pro": "Source Sans Pro",
-                "Montserrat": "Montserrat",
-                "Raleway": "Raleway",
-                "PT Sans": "PT Sans",
-                "Droid Sans": "Droid Sans"
+                "Open+Sans:400,400italic,700:latin": "Open Sans",
+                "Roboto:400,400italic,700:latin": "Roboto",
+                "Lato:400,400italic,700:latin": "Lato",
+                "Oswald:400,700:latin": "Oswald",
+                "Roboto+Condensed:400,400italic,700:latin": "Roboto Condensed",
+                "Source+Sans+Pro:400,400italic,700:latin": "Source Sans Pro",
+                "Montserrat:400,700:latin": "Montserrat",
+                "Raleway:400,400italic,700:latin": "Raleway",
+                "PT+Sans:400,400italic,700:latin": "PT Sans",
+                "Droid+Sans:400,700:latin": "Droid Sans"
               },
-              "default": "Open Sans"
+              "default": "Open+Sans:400,400italic,700:latin"
             },
             "fancy": {
               "title": "Name",
@@ -147,30 +147,30 @@
                 },
               "type": "string",
               "enum": [
-                "Lobster",
-                "Passion One",
-                "Poiret One",
-                "Righteous",
-                "Chewy",
-                "Bangers",
-                "Patua One",
-                "Abril Fatface",
-                "Sigmar One",
-                "Comfortaa"
+                "Lobster::latin",
+                "Passion+One:400,700:latin",
+                "Poiret+One::latin",
+                "Righteous::latin",
+                "Chewy::latin",
+                "Bangers::latin",
+                "Patua+One::latin",
+                "Abril+Fatface::latin",
+                "Sigmar+One::latin",
+                "Comfortaa:400,700:latin"
               ],
               "enumNames": {
-                "Lobster": "Lobster",
-                "Passion One": "Passion One",
-                "Poiret One": "Poiret One",
-                "Righteous": "Righteous",
-                "Chewy": "Chewy",
-                "Bangers": "Bangers",
-                "Patua One": "Patua One",
-                "Abril Fatface": "Abril Fatface",
-                "Sigmar One": "Sigmar One",
-                "Comfortaa": "Comfortaa"
+                "Lobster::latin": "Lobster",
+                "Passion+One:400,700:latin": "Passion One",
+                "Poiret+One::latin": "Poiret One",
+                "Righteous::latin": "Righteous",
+                "Chewy::latin": "Chewy",
+                "Bangers::latin": "Bangers",
+                "Patua+One::latin": "Patua One",
+                "Abril+Fatface::latin": "Abril Fatface",
+                "Sigmar+One::latin": "Sigmar One",
+                "Comfortaa:400,700:latin": "Comfortaa"
               },
-              "default": "Lobster"
+              "default": "Lobster::latin"
             },
             "handwriting": {
               "title": "Name",
@@ -180,30 +180,30 @@
                 },
               "type": "string",
               "enum": [
-                "Indie Flower",
-                "Covered By Your Grace",
-                "Pacifico",
-                "Shadows Into Light",
-                "Dancing Script",
-                "Amatic SC",
-                "Architects Daughter",
-                "Kaushan Script",
-                "Gloria Hallelujah",
-                "Courgette"
+                "Indie+Flower::latin",
+                "Covered+By+Your+Grace::latin",
+                "Pacifico::latin",
+                "Shadows+Into+Light::latin",
+                "Dancing+Script:400,700:latin",
+                "Amatic+SC:400,700:latin",
+                "Architects+Daughter::latin",
+                "Kaushan+Script::latin",
+                "Gloria+Hallelujah::latin",
+                "Courgette::latin"
               ],
               "enumNames": {
-                "Indie Flower": "Indie Flower",
-                "Covered By Your Grace": "Covered By Your Grace",
-                "Pacifico": "Pacifico",
-                "Shadows Into Light": "Shadows Into Light",
-                "Dancing Script": "Dancing Script",
-                "Amatic SC": "Amatic SC",
-                "Architects Daughter": "Architects Daughter",
-                "Kaushan Script": "Kaushan Script",
-                "Gloria Hallelujah": "Gloria Hallelujah",
-                "Courgette": "Courgette"
+                "Indie+Flower::latin": "Indie Flower",
+                "Covered+By+Your+Grace::latin": "Covered By Your Grace",
+                "Pacifico::latin": "Pacifico",
+                "Shadows+Into+Light::latin": "Shadows Into Light",
+                "Dancing+Script:400,700:latin": "Dancing Script",
+                "Amatic+SC:400,700:latin": "Amatic SC",
+                "Architects+Daughter::latin": "Architects Daughter",
+                "Kaushan+Script::latin": "Kaushan Script",
+                "Gloria+Hallelujah::latin": "Gloria Hallelujah",
+                "Courgette::latin": "Courgette"
               },
-              "default": "Indie Flower"
+              "default": "Indie+Flower::latin"
             },
             "monospace": {
               "title": "Name",
@@ -213,50 +213,50 @@
                 },
               "type": "string",
               "enum": [
-                "Inconsolata",
-                "Roboto Mono",
-                "Source Code Pro",
-                "Droid Sans Mono",
-                "PT Mono",
-                "Ubuntu Mono",
-                "Cousine",
-                "Oxygen Mono",
-                "VT323",
-                "Anonymous Pro"
+                "Inconsolata:400,700:latin",
+                "Roboto+Mono:400,400italic,700:latin",
+                "Source+Code+Pro:400,700:latin",
+                "Droid+Sans+Mono::latin",
+                "PT+Mono::latin",
+                "Ubuntu+Mono:400,400italic,700:latin",
+                "Cousine:400,400italic,700:latin",
+                "Oxygen+Mono::latin",
+                "VT323::latin",
+                "Anonymous+Pro:400,400italic,700:latin"
               ],
               "enumNames": {
-                "Inconsolata": "Inconsolata",
-                "Roboto Mono": "Roboto Mono",
-                "Source Code Pro": "Source Code Pro",
-                "Droid Sans Mono": "Droid Sans Mono",
-                "PT Mono": "PT Mono",
-                "Ubuntu Mono": "Ubuntu Mono",
-                "Cousine": "Cousine",
-                "Oxygen Mono": "Oxygen Mono",
-                "VT323": "VT323",
-                "Anonymous Pro": "Anonymous Pro"
+                "Inconsolata:400,700:latin": "Inconsolata",
+                "Roboto+Mono:400,400italic,700:latin": "Roboto Mono",
+                "Source+Code+Pro:400,700:latin": "Source Code Pro",
+                "Droid+Sans+Mono::latin": "Droid Sans Mono",
+                "PT+Mono::latin": "PT Mono",
+                "Ubuntu+Mono:400,400italic,700:latin": "Ubuntu Mono",
+                "Cousine:400,400italic,700:latin": "Cousine",
+                "Oxygen+Mono::latin": "Oxygen Mono",
+                "VT323::latin": "VT323",
+                "Anonymous+Pro:400,400italic,700:latin": "Anonymous Pro"
               },
-              "default": "Inconsolata"
+              "default": "Inconsolata:400,700:latin"
             }
           }
         },
         "default": [{
           "location": "headers",
           "style": "serif",
-          "serif": "Slabo 27px",
-          "sansSerif": "Open Sans",
-          "fancy": "Lobster",
-          "handwriting": "Indie Flower",
-          "monospace": "Inconsolata"
+          "serif": "Slabo+27px::latin",
+          "sansSerif": "Open+Sans:400,400italic,700:latin",
+          "fancy": "Lobster::latin",
+          "handwriting": "Indie+Flower::latin",
+          "monospace": "Inconsolata:400,700:latin"
         },
         {
           "location": "body",
           "style": "sansSerif",
-          "serif": "Slabo 27px",
-          "sansSerif": "Open Sans",
-          "fancy": "Lobster",
-          "handwriting": "Indie Flower",
-          "monospace": "Inconsolata"
+          "serif": "Slabo+27px::latin",
+          "sansSerif": "Open+Sans:400,400italic,700:latin",
+          "fancy": "Lobster::latin",
+          "handwriting": "Indie+Flower::latin",
+          "monospace": "Inconsolata:400,700:latin"
         }]
       }
     }
