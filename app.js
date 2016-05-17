@@ -4,7 +4,7 @@
   const FONT_TYPE = {
     serif: "serif",
     sansSerif: "sans-serif",
-    display: "cursive",
+    fancy: "cursive",
     handwriting: "cursive",
     monospace: "monospace"
   }
@@ -13,7 +13,7 @@
     body: "body"
   }
   const googleFontLoader = document.createElement("script")
-  const style = document.createElement("style")
+  const stylesheet = document.createElement("style")
 
   let options = INSTALL_OPTIONS
 
@@ -22,19 +22,19 @@
 
     window.WebFont.load({
       active() {
-        style.innerHTML = fonts.reduce((rules, {fontType, location, ...attrs}) => {
-          const fontFamily = attrs[fontType]
+        stylesheet.innerHTML = fonts.reduce((rules, {style, location, ...attrs}) => {
+          const fontFamily = attrs[style]
           const selector = location === "custom" ? attrs.selector : SELECTORS[location]
 
           return rules + `
             ${selector} {
-              font-family: '${fontFamily}', ${FONT_TYPE[fontType]};
+              font-family: '${fontFamily}', ${FONT_TYPE[style]};
             }
           `
         }, "")
       },
       google: {
-        families: fonts.map(({fontType, ...attrs}) => attrs[fontType])
+        families: fonts.map(({style, ...attrs}) => attrs[style])
       }
     })
   }
@@ -46,7 +46,7 @@
     googleFontLoader.addEventListener("load", updateElements)
 
     document.head.appendChild(googleFontLoader)
-    document.head.appendChild(style)
+    document.head.appendChild(stylesheet)
   }
 
   if (document.readyState === "loading") {

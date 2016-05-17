@@ -8,7 +8,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
   var FONT_TYPE = {
     serif: "serif",
     sansSerif: "sans-serif",
-    display: "cursive",
+    fancy: "cursive",
     handwriting: "cursive",
     monospace: "monospace"
   };
@@ -17,7 +17,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
     body: "body"
   };
   var googleFontLoader = document.createElement("script");
-  var style = document.createElement("style");
+  var stylesheet = document.createElement("style");
 
   var options = INSTALL_OPTIONS;
 
@@ -28,26 +28,26 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
     window.WebFont.load({
       active: function active() {
-        style.innerHTML = fonts.reduce(function (rules, _ref) {
-          var fontType = _ref.fontType;
+        stylesheet.innerHTML = fonts.reduce(function (rules, _ref) {
+          var style = _ref.style;
           var location = _ref.location;
 
-          var attrs = _objectWithoutProperties(_ref, ["fontType", "location"]);
+          var attrs = _objectWithoutProperties(_ref, ["style", "location"]);
 
-          var fontFamily = attrs[fontType];
+          var fontFamily = attrs[style];
           var selector = location === "custom" ? attrs.selector : SELECTORS[location];
 
-          return rules + ("\n            " + selector + " {\n              font-family: '" + fontFamily + "', " + FONT_TYPE[fontType] + ";\n            }\n          ");
+          return rules + ("\n            " + selector + " {\n              font-family: '" + fontFamily + "', " + FONT_TYPE[style] + ";\n            }\n          ");
         }, "");
       },
 
       google: {
         families: fonts.map(function (_ref2) {
-          var fontType = _ref2.fontType;
+          var style = _ref2.style;
 
-          var attrs = _objectWithoutProperties(_ref2, ["fontType"]);
+          var attrs = _objectWithoutProperties(_ref2, ["style"]);
 
-          return attrs[fontType];
+          return attrs[style];
         })
       }
     });
@@ -60,7 +60,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
     googleFontLoader.addEventListener("load", updateElements);
 
     document.head.appendChild(googleFontLoader);
-    document.head.appendChild(style);
+    document.head.appendChild(stylesheet);
   }
 
   if (document.readyState === "loading") {
