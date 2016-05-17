@@ -23,17 +23,13 @@
     window.WebFont.load({
       active() {
         stylesheet.innerHTML = fonts.reduce((rules, {style, location, ...attrs}) => {
-          const fontFamily = attrs[style]
-          const splitFamily = fontFamily.split("+")
-          const joinFamily = splitFamily.join(" ")
-          const finalFamily = joinFamily.split(":")[0]
+          const [fontFamily] = attrs[style].split(":")
 
-          console.log(finalFamily)
           const selector = location === "custom" ? attrs.selector : SELECTORS[location]
 
           return rules + `
             ${selector} {
-              font-family: '${finalFamily}', ${FONT_TYPE[style]};
+              font-family: '${fontFamily.replace("+", " ")}', ${FONT_TYPE[style]};
             }
           `
         }, "")
@@ -42,7 +38,6 @@
         families: fonts.map(({style, ...attrs}) => attrs[style])
       }
     })
-    console.log(stylesheet)
   }
 
   function bootstrap () {

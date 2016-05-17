@@ -1,5 +1,7 @@
 "use strict";
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 (function () {
@@ -34,15 +36,16 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
           var attrs = _objectWithoutProperties(_ref, ["style", "location"]);
 
-          var fontFamily = attrs[style];
-          var splitFamily = fontFamily.split("+");
-          var joinFamily = splitFamily.join(" ");
-          var finalFamily = joinFamily.split(":")[0];
+          var _attrs$style$split = attrs[style].split(":");
 
-          console.log(finalFamily);
+          var _attrs$style$split2 = _slicedToArray(_attrs$style$split, 1);
+
+          var fontFamily = _attrs$style$split2[0];
+
+
           var selector = location === "custom" ? attrs.selector : SELECTORS[location];
 
-          return rules + ("\n            " + selector + " {\n              font-family: '" + finalFamily + "', " + FONT_TYPE[style] + ";\n            }\n          ");
+          return rules + ("\n            " + selector + " {\n              font-family: '" + fontFamily.replace("+", " ") + "', " + FONT_TYPE[style] + ";\n            }\n          ");
         }, "");
       },
 
@@ -56,7 +59,6 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
         })
       }
     });
-    console.log(stylesheet);
   }
 
   function bootstrap() {
