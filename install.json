@@ -102,7 +102,7 @@
                 "Playfair+Display:400,400italic,700:latin": "Playfair Display",
                 "PT+Serif:400,400italic,700:latin": "PT Serif",
                 "Roboto+Slab:400,700:latin": "Roboto Slab",
-                "Slabo+27px::latin": "Slabo 27px"
+                "Slabo+27px::latin": "Slabo"
               },
               "default": "Slabo+27px::latin"
             },
