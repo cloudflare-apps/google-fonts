@@ -1,6 +1,8 @@
 (function () {
   if (!window.addEventListener) return // Check for IE9+
 
+  const STATE_ATTRIBUTE = "data-eager-google-fonts-state"
+  const FONT_PATTERN = /\+/g
   const FONT_TYPE = {
     serif: "serif",
     sansSerif: "sans-serif",
@@ -15,59 +17,58 @@
 
   function updateElement() {
     const {headers, body, custom} = options
-    const HEADER_FONT_FAMILY = {
-      serif: headers.serif,
-      sansSerif: headers.sansSerif,
-      fancy: headers.fancy,
-      handwriting: headers.handwriting,
-      monospace: headers.monospace
-    }
-    const BODY_FONT_FAMILY = {
-      serif: body.serif,
-      sansSerif: body.sansSerif,
-      fancy: body.fancy,
-      handwriting: body.handwriting,
-      monospace: body.monospace
-    }
-    const [headerFontFamily] = HEADER_FONT_FAMILY[headers.style].split(":")
-    const [bodyFontFamily] = BODY_FONT_FAMILY[body.style].split(":")
 
-    stylesheet.innerHTML = `
-    h1, h2, h3, h4, h5, h6, headers {
-      font-family: '${headerFontFamily.split("+").join(" ")}', ${FONT_TYPE[headers.style]};
-    }
+    headers.selector = "h1, h2, h3, h4, h5, h6, headers"
+    body.selector = "body"
 
-    body {
-      font-family: '${bodyFontFamily.split("+").join(" ")}', ${FONT_TYPE[body.style]};
-    }`
+    const fonts = [headers, body].concat(custom)
 
-    const fontArray = custom.map(({style, ...attrs}) => attrs[style])
-
-    fontArray.push(HEADER_FONT_FAMILY[headers.style], BODY_FONT_FAMILY[body.style])
+    const families = fonts.map(({style, ...attrs}) => attrs[style])
 
     window.WebFont.load({
       active() {
-        stylesheet.innerHTML += custom.reduce((rules, {style, ...attrs}) => {
+        stylesheet.innerHTML = fonts.reduce((rules, {style, ...attrs}) => {
           const [fontFamily] = attrs[style].split(":")
 
           return rules + `
             ${attrs.selector} {
-              font-family: '${fontFamily.split("+").join(" ")}', ${FONT_TYPE[style]};
+              font-family: '${fontFamily.replace(FONT_PATTERN, " ")}', ${FONT_TYPE[style]};
             }
           `
         }, "")
 
         document.head.appendChild(stylesheet)
+        document.body.setAttribute(STATE_ATTRIBUTE, "loaded")
       },
-      google: {
-        families: fontArray
-      }
+      inactive() {
+        document.body.setAttribute(STATE_ATTRIBUTE, "loaded")
+      },
+      google: {families}
     })
-    document.body.setAttribute("data-eager-google-fonts-state", "loaded")
   }
 
   function bootstrap () {
-    document.body.setAttribute("data-eager-google-fonts-state", "loading")
+    if (INSTALL_ID === "preview") {
+      const {color} = document.defaultView.getComputedStyle(document.body)
+      const devStylesheet = document.createElement("style")
+
+      devStylesheet.innerHTML = `
+        body[${STATE_ATTRIBUTE}] {
+          transition-duration: 150ms;
+          transition-property: color, text-shadow;
+          transition-timing-function: linear;
+        }
+
+        body[${STATE_ATTRIBUTE}="updating"],
+        body[${STATE_ATTRIBUTE}="updating"] * {
+          color: transparent !important;
+          text-shadow: 0 0 6px ${color};
+        }
+      `
+      document.head.appendChild(devStylesheet)
+    }
+
+    document.body.setAttribute(STATE_ATTRIBUTE, "boostrapping")
     googleFontLoader.src = "https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"
     googleFontLoader.async = true
 
@@ -85,11 +86,8 @@
 
   window.INSTALL_SCOPE = {
     setOptions(nextOptions) {
+      document.body.setAttribute(STATE_ATTRIBUTE, "updating")
       options = nextOptions
-      document.body.setAttribute("data-eager-google-fonts-state", "loading")
-
-      stylesheet.innerHTML = ""
-      stylesheet.parentNode && stylesheet.parentNode.removeChild(stylesheet)
 
       updateElement()
     }
