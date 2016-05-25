@@ -1,6 +1,8 @@
 (function () {
   if (!window.addEventListener) return // Check for IE9+
 
+  const STATE_ATTRIBUTE = "data-eager-google-fonts-state"
+  const FONT_PATTERN = /\+/g
   const FONT_TYPE = {
     serif: "serif",
     sansSerif: "sans-serif",
@@ -8,41 +10,65 @@
     handwriting: "cursive",
     monospace: "monospace"
   }
-  const SELECTORS = {
-    headers: "h1, h2, h3, h4, h5, h6, header",
-    body: "body"
-  }
   const googleFontLoader = document.createElement("script")
   const stylesheet = document.createElement("style")
 
   let options = INSTALL_OPTIONS
 
   function updateElement() {
-    const {fonts} = options
+    const {headers, body, custom} = options
+
+    headers.selector = "h1, h2, h3, h4, h5, h6, headers"
+    body.selector = "body"
+
+    const fonts = [headers, body].concat(custom)
+
+    const families = fonts.map(({style, ...attrs}) => attrs[style])
 
     window.WebFont.load({
       active() {
-        stylesheet.innerHTML = fonts.reduce((rules, {style, location, ...attrs}) => {
+        stylesheet.innerHTML = fonts.reduce((rules, {style, ...attrs}) => {
           const [fontFamily] = attrs[style].split(":")
 
-          const selector = location === "custom" ? attrs.selector : SELECTORS[location]
-
           return rules + `
-            ${selector} {
-              font-family: '${fontFamily.replace("+", " ")}', ${FONT_TYPE[style]};
+            ${attrs.selector} {
+              font-family: '${fontFamily.replace(FONT_PATTERN, " ")}', ${FONT_TYPE[style]};
             }
           `
         }, "")
 
         document.head.appendChild(stylesheet)
+        document.body.setAttribute(STATE_ATTRIBUTE, "loaded")
       },
-      google: {
-        families: fonts.map(({style, ...attrs}) => attrs[style])
-      }
+      inactive() {
+        document.body.setAttribute(STATE_ATTRIBUTE, "loaded")
+      },
+      google: {families}
     })
   }
 
   function bootstrap () {
+    if (INSTALL_ID === "preview") {
+      const {color} = document.defaultView.getComputedStyle(document.body)
+      const devStylesheet = document.createElement("style")
+
+      devStylesheet.innerHTML = `
+        body[${STATE_ATTRIBUTE}] {
+          transition-duration: 150ms;
+          transition-property: color, text-shadow;
+          transition-timing-function: linear;
+        }
+
+        body[${STATE_ATTRIBUTE}="updating"],
+        body[${STATE_ATTRIBUTE}="updating"] * {
+          color: transparent !important;
+          text-shadow: 0 0 6px ${color};
+        }
+      `
+      document.head.appendChild(devStylesheet)
+    }
+
+    document.body.setAttribute(STATE_ATTRIBUTE, "boostrapping")
     googleFontLoader.src = "https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"
     googleFontLoader.async = true
 
@@ -60,10 +86,8 @@
 
   window.INSTALL_SCOPE = {
     setOptions(nextOptions) {
+      document.body.setAttribute(STATE_ATTRIBUTE, "updating")
       options = nextOptions
-
-      stylesheet.innerHTML = ""
-      stylesheet.parentNode && stylesheet.parentNode.removeChild(stylesheet)
 
       updateElement()
     }

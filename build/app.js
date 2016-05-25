@@ -7,16 +7,14 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 (function () {
   if (!window.addEventListener) return; // Check for IE9+
 
+  var STATE_ATTRIBUTE = "data-eager-google-fonts-state";
+  var FONT_PATTERN = /\+/g;
   var FONT_TYPE = {
     serif: "serif",
     sansSerif: "sans-serif",
     fancy: "cursive",
     handwriting: "cursive",
     monospace: "monospace"
-  };
-  var SELECTORS = {
-    headers: "h1, h2, h3, h4, h5, h6, header",
-    body: "body"
   };
   var googleFontLoader = document.createElement("script");
   var stylesheet = document.createElement("style");
@@ -25,16 +23,30 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
   function updateElement() {
     var _options = options;
-    var fonts = _options.fonts;
+    var headers = _options.headers;
+    var body = _options.body;
+    var custom = _options.custom;
 
+
+    headers.selector = "h1, h2, h3, h4, h5, h6, headers";
+    body.selector = "body";
+
+    var fonts = [headers, body].concat(custom);
+
+    var families = fonts.map(function (_ref) {
+      var style = _ref.style;
+
+      var attrs = _objectWithoutProperties(_ref, ["style"]);
+
+      return attrs[style];
+    });
 
     window.WebFont.load({
       active: function active() {
-        stylesheet.innerHTML = fonts.reduce(function (rules, _ref) {
-          var style = _ref.style;
-          var location = _ref.location;
+        stylesheet.innerHTML = fonts.reduce(function (rules, _ref2) {
+          var style = _ref2.style;
 
-          var attrs = _objectWithoutProperties(_ref, ["style", "location"]);
+          var attrs = _objectWithoutProperties(_ref2, ["style"]);
 
           var _attrs$style$split = attrs[style].split(":");
 
@@ -43,27 +55,33 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
           var fontFamily = _attrs$style$split2[0];
 
 
-          var selector = location === "custom" ? attrs.selector : SELECTORS[location];
-
-          return rules + ("\n            " + selector + " {\n              font-family: '" + fontFamily.replace("+", " ") + "', " + FONT_TYPE[style] + ";\n            }\n          ");
+          return rules + ("\n            " + attrs.selector + " {\n              font-family: '" + fontFamily.replace(FONT_PATTERN, " ") + "', " + FONT_TYPE[style] + ";\n            }\n          ");
         }, "");
 
         document.head.appendChild(stylesheet);
+        document.body.setAttribute(STATE_ATTRIBUTE, "loaded");
+      },
+      inactive: function inactive() {
+        document.body.setAttribute(STATE_ATTRIBUTE, "loaded");
       },
 
-      google: {
-        families: fonts.map(function (_ref2) {
-          var style = _ref2.style;
-
-          var attrs = _objectWithoutProperties(_ref2, ["style"]);
-
-          return attrs[style];
-        })
-      }
+      google: { families: families }
     });
   }
 
   function bootstrap() {
+    if (INSTALL_ID === "preview") {
+      var _document$defaultView = document.defaultView.getComputedStyle(document.body);
+
+      var color = _document$defaultView.color;
+
+      var devStylesheet = document.createElement("style");
+
+      devStylesheet.innerHTML = "\n        body[" + STATE_ATTRIBUTE + "] {\n          transition-duration: 150ms;\n          transition-property: color, text-shadow;\n          transition-timing-function: linear;\n        }\n\n        body[" + STATE_ATTRIBUTE + "=\"updating\"],\n        body[" + STATE_ATTRIBUTE + "=\"updating\"] * {\n          color: transparent !important;\n          text-shadow: 0 0 6px " + color + ";\n        }\n      ";
+      document.head.appendChild(devStylesheet);
+    }
+
+    document.body.setAttribute(STATE_ATTRIBUTE, "boostrapping");
     googleFontLoader.src = "https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js";
     googleFontLoader.async = true;
 
@@ -80,10 +98,8 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
   window.INSTALL_SCOPE = {
     setOptions: function setOptions(nextOptions) {
+      document.body.setAttribute(STATE_ATTRIBUTE, "updating");
       options = nextOptions;
-
-      stylesheet.innerHTML = "";
-      stylesheet.parentNode && stylesheet.parentNode.removeChild(stylesheet);
 
       updateElement();
     }
