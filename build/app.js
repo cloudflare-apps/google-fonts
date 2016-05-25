@@ -14,10 +14,6 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
     handwriting: "cursive",
     monospace: "monospace"
   };
-  var SELECTORS = {
-    headers: "h1, h2, h3, h4, h5, h6, header",
-    body: "body"
-  };
   var googleFontLoader = document.createElement("script");
   var stylesheet = document.createElement("style");
 
@@ -25,16 +21,56 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
   function updateElement() {
     var _options = options;
-    var fonts = _options.fonts;
+    var headers = _options.headers;
+    var body = _options.body;
+    var custom = _options.custom;
 
+    var HEADER_FONT_FAMILY = {
+      serif: headers.serif,
+      sansSerif: headers.sansSerif,
+      fancy: headers.fancy,
+      handwriting: headers.handwriting,
+      monospace: headers.monospace
+    };
+    var BODY_FONT_FAMILY = {
+      serif: body.serif,
+      sansSerif: body.sansSerif,
+      fancy: body.fancy,
+      handwriting: body.handwriting,
+      monospace: body.monospace
+    };
+
+    var _HEADER_FONT_FAMILY$h = HEADER_FONT_FAMILY[headers.style].split(":");
+
+    var _HEADER_FONT_FAMILY$h2 = _slicedToArray(_HEADER_FONT_FAMILY$h, 1);
+
+    var headerFontFamily = _HEADER_FONT_FAMILY$h2[0];
+
+    var _BODY_FONT_FAMILY$bod = BODY_FONT_FAMILY[body.style].split(":");
+
+    var _BODY_FONT_FAMILY$bod2 = _slicedToArray(_BODY_FONT_FAMILY$bod, 1);
+
+    var bodyFontFamily = _BODY_FONT_FAMILY$bod2[0];
+
+
+    stylesheet.innerHTML = "\n    h1, h2, h3, h4, h5, h6, headers {\n      font-family: '" + headerFontFamily.split("+").join(" ") + "', " + FONT_TYPE[headers.style] + ";\n    }\n\n    body {\n      font-family: '" + bodyFontFamily.split("+").join(" ") + "', " + FONT_TYPE[body.style] + ";\n    }";
+
+    var fontArray = custom.map(function (_ref) {
+      var style = _ref.style;
+
+      var attrs = _objectWithoutProperties(_ref, ["style"]);
+
+      return attrs[style];
+    });
+
+    fontArray.push(HEADER_FONT_FAMILY[headers.style], BODY_FONT_FAMILY[body.style]);
 
     window.WebFont.load({
       active: function active() {
-        stylesheet.innerHTML = fonts.reduce(function (rules, _ref) {
-          var style = _ref.style;
-          var location = _ref.location;
+        stylesheet.innerHTML += custom.reduce(function (rules, _ref2) {
+          var style = _ref2.style;
 
-          var attrs = _objectWithoutProperties(_ref, ["style", "location"]);
+          var attrs = _objectWithoutProperties(_ref2, ["style"]);
 
           var _attrs$style$split = attrs[style].split(":");
 
@@ -43,27 +79,21 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
           var fontFamily = _attrs$style$split2[0];
 
 
-          var selector = location === "custom" ? attrs.selector : SELECTORS[location];
-
-          return rules + ("\n            " + selector + " {\n              font-family: '" + fontFamily.replace("+", " ") + "', " + FONT_TYPE[style] + ";\n            }\n          ");
+          return rules + ("\n            " + attrs.selector + " {\n              font-family: '" + fontFamily.split("+").join(" ") + "', " + FONT_TYPE[style] + ";\n            }\n          ");
         }, "");
 
         document.head.appendChild(stylesheet);
       },
 
       google: {
-        families: fonts.map(function (_ref2) {
-          var style = _ref2.style;
-
-          var attrs = _objectWithoutProperties(_ref2, ["style"]);
-
-          return attrs[style];
-        })
+        families: fontArray
       }
     });
+    document.body.setAttribute("data-eager-google-fonts-state", "loaded");
   }
 
   function bootstrap() {
+    document.body.setAttribute("data-eager-google-fonts-state", "loading");
     googleFontLoader.src = "https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js";
     googleFontLoader.async = true;
 
@@ -81,6 +111,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
   window.INSTALL_SCOPE = {
     setOptions: function setOptions(nextOptions) {
       options = nextOptions;
+      document.body.setAttribute("data-eager-google-fonts-state", "loading");
 
       stylesheet.innerHTML = "";
       stylesheet.parentNode && stylesheet.parentNode.removeChild(stylesheet);

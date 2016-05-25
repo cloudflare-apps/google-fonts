@@ -8,28 +8,51 @@
     handwriting: "cursive",
     monospace: "monospace"
   }
-  const SELECTORS = {
-    headers: "h1, h2, h3, h4, h5, h6, header",
-    body: "body"
-  }
   const googleFontLoader = document.createElement("script")
   const stylesheet = document.createElement("style")
 
   let options = INSTALL_OPTIONS
 
   function updateElement() {
-    const {fonts} = options
+    const {headers, body, custom} = options
+    const HEADER_FONT_FAMILY = {
+      serif: headers.serif,
+      sansSerif: headers.sansSerif,
+      fancy: headers.fancy,
+      handwriting: headers.handwriting,
+      monospace: headers.monospace
+    }
+    const BODY_FONT_FAMILY = {
+      serif: body.serif,
+      sansSerif: body.sansSerif,
+      fancy: body.fancy,
+      handwriting: body.handwriting,
+      monospace: body.monospace
+    }
+    const [headerFontFamily] = HEADER_FONT_FAMILY[headers.style].split(":")
+    const [bodyFontFamily] = BODY_FONT_FAMILY[body.style].split(":")
+
+    stylesheet.innerHTML = `
+    h1, h2, h3, h4, h5, h6, headers {
+      font-family: '${headerFontFamily.split("+").join(" ")}', ${FONT_TYPE[headers.style]};
+    }
+
+    body {
+      font-family: '${bodyFontFamily.split("+").join(" ")}', ${FONT_TYPE[body.style]};
+    }`
+
+    const fontArray = custom.map(({style, ...attrs}) => attrs[style])
+
+    fontArray.push(HEADER_FONT_FAMILY[headers.style], BODY_FONT_FAMILY[body.style])
 
     window.WebFont.load({
       active() {
-        stylesheet.innerHTML = fonts.reduce((rules, {style, location, ...attrs}) => {
+        stylesheet.innerHTML += custom.reduce((rules, {style, ...attrs}) => {
           const [fontFamily] = attrs[style].split(":")
 
-          const selector = location === "custom" ? attrs.selector : SELECTORS[location]
-
           return rules + `
-            ${selector} {
-              font-family: '${fontFamily.replace("+", " ")}', ${FONT_TYPE[style]};
+            ${attrs.selector} {
+              font-family: '${fontFamily.split("+").join(" ")}', ${FONT_TYPE[style]};
             }
           `
         }, "")
@@ -37,12 +60,14 @@
         document.head.appendChild(stylesheet)
       },
       google: {
-        families: fonts.map(({style, ...attrs}) => attrs[style])
+        families: fontArray
       }
     })
+    document.body.setAttribute("data-eager-google-fonts-state", "loaded")
   }
 
   function bootstrap () {
+    document.body.setAttribute("data-eager-google-fonts-state", "loading")
     googleFontLoader.src = "https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"
     googleFontLoader.async = true
 
@@ -61,6 +86,7 @@
   window.INSTALL_SCOPE = {
     setOptions(nextOptions) {
       options = nextOptions
+      document.body.setAttribute("data-eager-google-fonts-state", "loading")
 
       stylesheet.innerHTML = ""
       stylesheet.parentNode && stylesheet.parentNode.removeChild(stylesheet)
