@@ -10,10 +10,23 @@
     handwriting: "cursive",
     monospace: "monospace"
   }
+
+  const loadingStyle = document.createElement("style")
+
+  loadingStyle.innerHTML = `
+    body, body * {
+      color: transparent !important;
+    }
+  `
   const googleFontLoader = document.createElement("script")
-  const stylesheet = document.createElement("style")
+  const fontStyles = document.createElement("style")
 
   let options = INSTALL_OPTIONS
+
+  function onFontLoadFinish() {
+    document.body.setAttribute(STATE_ATTRIBUTE, "loaded")
+    loadingStyle.parentNode && loadingStyle.parentNode.removeChild(loadingStyle)
+  }
 
   function updateElement() {
     const {headers, body, custom} = options
@@ -27,7 +40,7 @@
 
     window.WebFont.load({
       active() {
-        stylesheet.innerHTML = fonts.reduce((rules, {style, ...attrs}) => {
+        fontStyles.innerHTML = fonts.reduce((rules, {style, ...attrs}) => {
           const [fontFamily] = attrs[style].split(":")
 
           return rules + `
@@ -37,11 +50,11 @@
           `
         }, "")
 
-        document.head.appendChild(stylesheet)
-        document.body.setAttribute(STATE_ATTRIBUTE, "loaded")
+        document.head.appendChild(fontStyles)
+        onFontLoadFinish()
       },
       inactive() {
-        document.body.setAttribute(STATE_ATTRIBUTE, "loaded")
+        onFontLoadFinish()
       },
       google: {families}
     })
@@ -76,6 +89,8 @@
 
     document.head.appendChild(googleFontLoader)
   }
+
+  document.head.appendChild(loadingStyle)
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", bootstrap)

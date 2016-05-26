@@ -16,10 +16,19 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
     handwriting: "cursive",
     monospace: "monospace"
   };
+
+  var loadingStyle = document.createElement("style");
+
+  loadingStyle.innerHTML = "\n    body, body * {\n      color: transparent !important;\n    }\n  ";
   var googleFontLoader = document.createElement("script");
-  var stylesheet = document.createElement("style");
+  var fontStyles = document.createElement("style");
 
   var options = INSTALL_OPTIONS;
+
+  function onFontLoadFinish() {
+    document.body.setAttribute(STATE_ATTRIBUTE, "loaded");
+    loadingStyle.parentNode && loadingStyle.parentNode.removeChild(loadingStyle);
+  }
 
   function updateElement() {
     var _options = options;
@@ -43,7 +52,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
     window.WebFont.load({
       active: function active() {
-        stylesheet.innerHTML = fonts.reduce(function (rules, _ref2) {
+        fontStyles.innerHTML = fonts.reduce(function (rules, _ref2) {
           var style = _ref2.style;
 
           var attrs = _objectWithoutProperties(_ref2, ["style"]);
@@ -58,11 +67,11 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
           return rules + ("\n            " + attrs.selector + " {\n              font-family: '" + fontFamily.replace(FONT_PATTERN, " ") + "', " + FONT_TYPE[style] + ";\n            }\n          ");
         }, "");
 
-        document.head.appendChild(stylesheet);
-        document.body.setAttribute(STATE_ATTRIBUTE, "loaded");
+        document.head.appendChild(fontStyles);
+        onFontLoadFinish();
       },
       inactive: function inactive() {
-        document.body.setAttribute(STATE_ATTRIBUTE, "loaded");
+        onFontLoadFinish();
       },
 
       google: { families: families }
@@ -89,6 +98,8 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
     document.head.appendChild(googleFontLoader);
   }
+
+  document.head.appendChild(loadingStyle);
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", bootstrap);

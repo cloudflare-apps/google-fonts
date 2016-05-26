@@ -4,10 +4,6 @@
       {
         "type": "script",
         "src": "./build/app.js"
-      },
-      {
-        "type": "style",
-        "src": "app.css"
       }
     ],
     "body": []
