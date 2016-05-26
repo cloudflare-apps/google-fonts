@@ -43,28 +43,28 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
     var fonts = [headers, body].concat(custom);
 
     var families = fonts.map(function (_ref) {
-      var style = _ref.style;
+      var category = _ref.category;
 
-      var attrs = _objectWithoutProperties(_ref, ["style"]);
+      var attrs = _objectWithoutProperties(_ref, ["category"]);
 
-      return attrs[style];
+      return attrs[category];
     });
 
     window.WebFont.load({
       active: function active() {
         fontStyles.innerHTML = fonts.reduce(function (rules, _ref2) {
-          var style = _ref2.style;
+          var category = _ref2.category;
 
-          var attrs = _objectWithoutProperties(_ref2, ["style"]);
+          var attrs = _objectWithoutProperties(_ref2, ["category"]);
 
-          var _attrs$style$split = attrs[style].split(":");
+          var _attrs$category$split = attrs[category].split(":");
 
-          var _attrs$style$split2 = _slicedToArray(_attrs$style$split, 1);
+          var _attrs$category$split2 = _slicedToArray(_attrs$category$split, 1);
 
-          var fontFamily = _attrs$style$split2[0];
+          var fontFamily = _attrs$category$split2[0];
 
 
-          return rules + ("\n            " + attrs.selector + " {\n              font-family: '" + fontFamily.replace(FONT_PATTERN, " ") + "', " + FONT_TYPE[style] + ";\n            }\n          ");
+          return rules + ("\n            " + attrs.selector + " {\n              font-family: '" + fontFamily.replace(FONT_PATTERN, " ") + "', " + FONT_TYPE[category] + ";\n            }\n          ");
         }, "");
 
         document.head.appendChild(fontStyles);

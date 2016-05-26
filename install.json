@@ -23,8 +23,8 @@
         "order": 1,
         "type": "object",
         "properties": {
-          "style": {
-            "title": "Style",
+          "category": {
+            "title": "Category",
             "order": 1,
             "type": "string",
             "enum": [
@@ -44,10 +44,10 @@
             "default": "serif"
           },
           "serif": {
-            "title": "Name",
+            "title": "Font",
             "order": 4,
             "showIf": {
-              "headers.style": "serif"
+              "headers.category": "serif"
               },
             "type": "string",
             "enum": [
@@ -77,10 +77,10 @@
             "default": "Slabo+27px::latin"
           },
           "sansSerif": {
-            "title": "Name",
+            "title": "Font",
             "order": 5,
             "showIf": {
-              "headers.style": "sansSerif"
+              "headers.category": "sansSerif"
               },
             "type": "string",
             "enum": [
@@ -110,10 +110,10 @@
             "default": "Open+Sans:400,400italic,700:latin"
           },
           "fancy": {
-            "title": "Name",
+            "title": "Font",
             "order": 6,
             "showIf": {
-              "headers.style": "fancy"
+              "headers.category": "fancy"
               },
             "type": "string",
             "enum": [
@@ -143,10 +143,10 @@
             "default": "Lobster::latin"
           },
           "handwriting": {
-            "title": "Name",
+            "title": "Font",
             "order": 7,
             "showIf": {
-              "headers.style": "handwriting"
+              "headers.category": "handwriting"
             },
             "type": "string",
             "enum": [
@@ -176,10 +176,10 @@
             "default": "Indie+Flower::latin"
           },
           "monospace": {
-            "title": "Name",
+            "title": "Font",
             "order": 8,
             "showIf": {
-              "headers.style": "monospace"
+              "headers.category": "monospace"
             },
             "type": "string",
             "enum": [
@@ -215,8 +215,8 @@
         "order": 2,
         "type": "object",
         "properties": {
-          "style": {
-            "title": "Style",
+          "category": {
+            "title": "Category",
             "order": 1,
             "type": "string",
             "enum": [
@@ -236,10 +236,10 @@
             "default": "sansSerif"
           },
           "serif": {
-            "title": "Name",
+            "title": "Font",
             "order": 4,
             "showIf": {
-              "body.style": "serif"
+              "body.category": "serif"
               },
             "type": "string",
             "enum": [
@@ -269,10 +269,10 @@
             "default": "Slabo+27px::latin"
           },
           "sansSerif": {
-            "title": "Name",
+            "title": "Font",
             "order": 5,
             "showIf": {
-              "body.style": "sansSerif"
+              "body.category": "sansSerif"
               },
             "type": "string",
             "enum": [
@@ -302,10 +302,10 @@
             "default": "Open+Sans:400,400italic,700:latin"
           },
           "fancy": {
-            "title": "Name",
+            "title": "Font",
             "order": 6,
             "showIf": {
-              "body.style": "fancy"
+              "body.category": "fancy"
               },
             "type": "string",
             "enum": [
@@ -335,10 +335,10 @@
             "default": "Lobster::latin"
           },
           "handwriting": {
-            "title": "Name",
+            "title": "Font",
             "order": 7,
             "showIf": {
-              "body.style": "handwriting"
+              "body.category": "handwriting"
               },
             "type": "string",
             "enum": [
@@ -368,10 +368,10 @@
             "default": "Indie+Flower::latin"
           },
           "monospace": {
-            "title": "Name",
+            "title": "Font",
             "order": 8,
             "showIf": {
-              "body.style": "monospace"
+              "body.category": "monospace"
               },
             "type": "string",
             "enum": [
@@ -416,8 +416,8 @@
               "format": "selector",
               "type": "string"
             },
-            "style": {
-              "title": "Style",
+            "category": {
+              "title": "Category",
               "order": 2,
               "type": "string",
               "enum": [
@@ -437,10 +437,10 @@
               "default": "serif"
               },
             "serif": {
-              "title": "Name",
+              "title": "Font",
               "order": 3,
               "showIf": {
-                "custom[].style": "serif"
+                "custom[].category": "serif"
                 },
               "type": "string",
               "enum": [
@@ -470,10 +470,10 @@
               "default": "Slabo+27px::latin"
             },
             "sansSerif": {
-              "title": "Name",
+              "title": "Font",
               "order": 4,
               "showIf": {
-                "custom[].style": "sansSerif"
+                "custom[].category": "sansSerif"
                 },
               "type": "string",
               "enum": [
@@ -503,10 +503,10 @@
               "default": "Open+Sans:400,400italic,700:latin"
             },
             "fancy": {
-              "title": "Name",
+              "title": "Font",
               "order": 5,
               "showIf": {
-                "custom[].style": "fancy"
+                "custom[].category": "fancy"
                 },
               "type": "string",
               "enum": [
@@ -536,10 +536,10 @@
               "default": "Lobster::latin"
             },
             "handwriting": {
-              "title": "Name",
+              "title": "Font",
               "order": 6,
               "showIf": {
-                "custom[].style": "handwriting"
+                "custom[].category": "handwriting"
                 },
               "type": "string",
               "enum": [
@@ -569,10 +569,10 @@
               "default": "Indie+Flower::latin"
             },
             "monospace": {
-              "title": "Name",
+              "title": "Font",
               "order": 7,
               "showIf": {
-                "custom[].style": "monospace"
+                "custom[].category": "monospace"
                 },
               "type": "string",
               "enum": [
