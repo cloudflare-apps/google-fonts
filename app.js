@@ -36,16 +36,16 @@
 
     const fonts = [headers, body].concat(custom)
 
-    const families = fonts.map(({style, ...attrs}) => attrs[style])
+    const families = fonts.map(({category, ...attrs}) => attrs[category])
 
     window.WebFont.load({
       active() {
-        fontStyles.innerHTML = fonts.reduce((rules, {style, ...attrs}) => {
-          const [fontFamily] = attrs[style].split(":")
+        fontStyles.innerHTML = fonts.reduce((rules, {category, ...attrs}) => {
+          const [fontFamily] = attrs[category].split(":")
 
           return rules + `
             ${attrs.selector} {
-              font-family: '${fontFamily.replace(FONT_PATTERN, " ")}', ${FONT_TYPE[style]};
+              font-family: '${fontFamily.replace(FONT_PATTERN, " ")}', ${FONT_TYPE[category]};
             }
           `
         }, "")
