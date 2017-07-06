@@ -5,8 +5,7 @@
         "type": "script",
         "src": "./build/app.js"
       }
-    ],
-    "body": []
+    ]
   },
   "preview": {
     "handlers": [

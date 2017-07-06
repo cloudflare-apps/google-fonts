@@ -10,8 +10,8 @@ const modulePattern = /(node_modules|bower_components)/
 // $.devtool = environment === 'development' ? 'eval-source-map' : false
 
 $.entry = {
-  app: path.resolve(__dirname, './source', 'app.js'),
-  style: path.resolve(__dirname, './source', 'app.css')
+  app: path.resolve(__dirname, './source', 'app.js')
+  // style: path.resolve(__dirname, './source', 'app.css')
 }
 
 $.output = {
