@@ -45,7 +45,7 @@
 
           return rules + `
             ${attrs.selector} {
-              font-family: '${fontFamily.replace(FONT_PATTERN, ' ')}', ${FONT_TYPE[category]};
+              font-family: '${fontFamily.replace(FONT_PATTERN, ' ')}', ${FONT_TYPE[category]} !important;
             }
           `
         }, '')
