@@ -59,7 +59,10 @@
               "Playfair+Display:400,400italic,700:latin",
               "PT+Serif:400,400italic,700:latin",
               "Roboto+Slab:400,700:latin",
-              "Slabo+27px::latin"
+              "Slabo+27px::latin",
+              "Amiri:400,400i,700,700i:arabic",
+              "Aref+Ruqaa:400,700:arabic",
+              "Scheherazade:400,700:arabic"
             ],
             "enumNames": {
               "Arvo:400,400italic,700:latin": "Arvo",
@@ -71,7 +74,10 @@
               "Playfair+Display:400,400italic,700:latin": "Playfair Display",
               "PT+Serif:400,400italic,700:latin": "PT Serif",
               "Roboto+Slab:400,700:latin": "Roboto Slab",
-              "Slabo+27px::latin": "Slabo"
+              "Slabo+27px::latin": "Slabo",
+              "Amiri:400,400i,700,700i:arabic": "Amiri (عربى)",
+              "Aref+Ruqaa:400,700:arabic": "Aref Ruqaa (عربى)",
+              "Scheherazade:400,700:arabic": "Scheherazade (عربى)"
             },
             "default": "Slabo+27px::latin"
           },
@@ -92,7 +98,11 @@
               "Raleway:400,400italic,700:latin",
               "Roboto+Condensed:400,400italic,700:latin",
               "Roboto:400,400italic,700:latin",
-              "Source+Sans+Pro:400,400italic,700:latin"
+              "Source+Sans+Pro:400,400italic,700:latin",
+              "Cairo:300,400:arabic",
+              "Changa:400,700:arabic",
+              "El+Messiri:400,500,600,700:arabic",
+              "Reem+Kufi:arabic"
             ],
             "enumNames": {
               "Droid+Sans:400,700:latin": "Droid Sans",
@@ -104,7 +114,11 @@
               "Raleway:400,400italic,700:latin": "Raleway",
               "Roboto+Condensed:400,400italic,700:latin": "Roboto Condensed",
               "Roboto:400,400italic,700:latin": "Roboto",
-              "Source+Sans+Pro:400,400italic,700:latin": "Source Sans Pro"
+              "Source+Sans+Pro:400,400italic,700:latin": "Source Sans Pro",
+              "Cairo:300,400:arabic": "Cairo (عربى)",
+              "Changa:400,700:arabic": "Changa (عربى)",
+              "El+Messiri:400,500,600,700:arabic": "El Messiri (عربى)",
+              "Reem+Kufi:arabic": "Reem Kufi (عربى)"
             },
             "default": "Open+Sans:400,400italic,700:latin"
           },
@@ -158,7 +172,8 @@
               "Indie+Flower::latin",
               "Kaushan+Script::latin",
               "Pacifico::latin",
-              "Shadows+Into+Light::latin"
+              "Shadows+Into+Light::latin",
+              "Lateef:400:arabic"
             ],
             "enumNames": {
               "Amatic+SC:400,700:latin": "Amatic SC",
@@ -170,7 +185,8 @@
               "Indie+Flower::latin": "Indie Flower",
               "Kaushan+Script::latin": "Kaushan Script",
               "Pacifico::latin": "Pacifico",
-              "Shadows+Into+Light::latin": "Shadows Into Light"
+              "Shadows+Into+Light::latin": "Shadows Into Light",
+              "Lateef:400:arabic": "Lateef (عربى)"
             },
             "default": "Indie+Flower::latin"
           },
@@ -239,7 +255,7 @@
             "order": 4,
             "showIf": {
               "body.category": "serif"
-              },
+            },
             "type": "string",
             "enum": [
               "Arvo:400,400italic,700:latin",
@@ -251,7 +267,10 @@
               "Playfair+Display:400,400italic,700:latin",
               "PT+Serif:400,400italic,700:latin",
               "Roboto+Slab:400,700:latin",
-              "Slabo+27px::latin"
+              "Slabo+27px::latin",
+              "Amiri:400,400i,700,700i:arabic",
+              "Aref+Ruqaa:400,700:arabic",
+              "Scheherazade:400,700:arabic"
             ],
             "enumNames": {
               "Arvo:400,400italic,700:latin": "Arvo",
@@ -263,7 +282,10 @@
               "Playfair+Display:400,400italic,700:latin": "Playfair Display",
               "PT+Serif:400,400italic,700:latin": "PT Serif",
               "Roboto+Slab:400,700:latin": "Roboto Slab",
-              "Slabo+27px::latin": "Slabo"
+              "Slabo+27px::latin": "Slabo",
+              "Amiri:400,400i,700,700i:arabic": "Amiri (عربى)",
+              "Aref+Ruqaa:400,700:arabic": "Aref Ruqaa (عربى)",
+              "Scheherazade:400,700:arabic": "Scheherazade (عربى)"
             },
             "default": "Slabo+27px::latin"
           },
@@ -284,7 +306,11 @@
               "Raleway:400,400italic,700:latin",
               "Roboto+Condensed:400,400italic,700:latin",
               "Roboto:400,400italic,700:latin",
-              "Source+Sans+Pro:400,400italic,700:latin"
+              "Source+Sans+Pro:400,400italic,700:latin",
+              "Cairo:300,400:arabic",
+              "Changa:400,700:arabic",
+              "El+Messiri:400,500,600,700:arabic",
+              "Reem+Kufi:arabic"
             ],
             "enumNames": {
               "Droid+Sans:400,700:latin": "Droid Sans",
@@ -296,7 +322,11 @@
               "Raleway:400,400italic,700:latin": "Raleway",
               "Roboto+Condensed:400,400italic,700:latin": "Roboto Condensed",
               "Roboto:400,400italic,700:latin": "Roboto",
-              "Source+Sans+Pro:400,400italic,700:latin": "Source Sans Pro"
+              "Source+Sans+Pro:400,400italic,700:latin": "Source Sans Pro",
+              "Cairo:300,400:arabic": "Cairo (عربى)",
+              "Changa:400,700:arabic": "Changa (عربى)",
+              "El+Messiri:400,500,600,700:arabic": "El Messiri (عربى)",
+              "Reem+Kufi:arabic": "Reem Kufi (عربى)"
             },
             "default": "Open+Sans:400,400italic,700:latin"
           },
@@ -338,7 +368,7 @@
             "order": 7,
             "showIf": {
               "body.category": "handwriting"
-              },
+            },
             "type": "string",
             "enum": [
               "Amatic+SC:400,700:latin",
@@ -350,7 +380,8 @@
               "Indie+Flower::latin",
               "Kaushan+Script::latin",
               "Pacifico::latin",
-              "Shadows+Into+Light::latin"
+              "Shadows+Into+Light::latin",
+              "Lateef:400:arabic"
             ],
             "enumNames": {
               "Amatic+SC:400,700:latin": "Amatic SC",
@@ -362,7 +393,8 @@
               "Indie+Flower::latin": "Indie Flower",
               "Kaushan+Script::latin": "Kaushan Script",
               "Pacifico::latin": "Pacifico",
-              "Shadows+Into+Light::latin": "Shadows Into Light"
+              "Shadows+Into+Light::latin": "Shadows Into Light",
+              "Lateef:400:arabic": "Lateef (عربى)"
             },
             "default": "Indie+Flower::latin"
           },
@@ -371,7 +403,7 @@
             "order": 8,
             "showIf": {
               "body.category": "monospace"
-              },
+            },
             "type": "string",
             "enum": [
               "Anonymous+Pro:400,400italic,700:latin",
@@ -452,7 +484,10 @@
                 "Playfair+Display:400,400italic,700:latin",
                 "PT+Serif:400,400italic,700:latin",
                 "Roboto+Slab:400,700:latin",
-                "Slabo+27px::latin"
+                "Slabo+27px::latin",
+                "Amiri:400,400i,700,700i:arabic",
+                "Aref+Ruqaa:400,700:arabic",
+                "Scheherazade:400,700:arabic"
               ],
               "enumNames": {
                 "Arvo:400,400italic,700:latin": "Arvo",
@@ -464,13 +499,16 @@
                 "Playfair+Display:400,400italic,700:latin": "Playfair Display",
                 "PT+Serif:400,400italic,700:latin": "PT Serif",
                 "Roboto+Slab:400,700:latin": "Roboto Slab",
-                "Slabo+27px::latin": "Slabo"
+                "Slabo+27px::latin": "Slabo",
+                "Amiri:400,400i,700,700i:arabic": "Amiri (عربى)",
+                "Aref+Ruqaa:400,700:arabic": "Aref Ruqaa (عربى)",
+                "Scheherazade:400,700:arabic": "Scheherazade (عربى)"
               },
               "default": "Slabo+27px::latin"
             },
             "sansSerif": {
               "title": "Font",
-              "order": 4,
+              "order": 5,
               "showIf": {
                 "custom[].category": "sansSerif"
                 },
@@ -485,7 +523,11 @@
                 "Raleway:400,400italic,700:latin",
                 "Roboto+Condensed:400,400italic,700:latin",
                 "Roboto:400,400italic,700:latin",
-                "Source+Sans+Pro:400,400italic,700:latin"
+                "Source+Sans+Pro:400,400italic,700:latin",
+                "Cairo:300,400:arabic",
+                "Changa:400,700:arabic",
+                "El+Messiri:400,500,600,700:arabic",
+                "Reem+Kufi:arabic"
               ],
               "enumNames": {
                 "Droid+Sans:400,700:latin": "Droid Sans",
@@ -497,13 +539,17 @@
                 "Raleway:400,400italic,700:latin": "Raleway",
                 "Roboto+Condensed:400,400italic,700:latin": "Roboto Condensed",
                 "Roboto:400,400italic,700:latin": "Roboto",
-                "Source+Sans+Pro:400,400italic,700:latin": "Source Sans Pro"
+                "Source+Sans+Pro:400,400italic,700:latin": "Source Sans Pro",
+                "Cairo:300,400:arabic": "Cairo (عربى)",
+                "Changa:400,700:arabic": "Changa (عربى)",
+                "El+Messiri:400,500,600,700:arabic": "El Messiri (عربى)",
+                "Reem+Kufi:arabic": "Reem Kufi (عربى)"
               },
               "default": "Open+Sans:400,400italic,700:latin"
             },
             "fancy": {
               "title": "Font",
-              "order": 5,
+              "order": 6,
               "showIf": {
                 "custom[].category": "fancy"
                 },
@@ -539,7 +585,7 @@
               "order": 6,
               "showIf": {
                 "custom[].category": "handwriting"
-                },
+              },
               "type": "string",
               "enum": [
                 "Amatic+SC:400,700:latin",
@@ -551,7 +597,8 @@
                 "Indie+Flower::latin",
                 "Kaushan+Script::latin",
                 "Pacifico::latin",
-                "Shadows+Into+Light::latin"
+                "Shadows+Into+Light::latin",
+                "Lateef:400:arabic"
               ],
               "enumNames": {
                 "Amatic+SC:400,700:latin": "Amatic SC",
@@ -563,16 +610,17 @@
                 "Indie+Flower::latin": "Indie Flower",
                 "Kaushan+Script::latin": "Kaushan Script",
                 "Pacifico::latin": "Pacifico",
-                "Shadows+Into+Light::latin": "Shadows Into Light"
+                "Shadows+Into+Light::latin": "Shadows Into Light",
+                "Lateef:400:arabic": "Lateef (عربى)"
               },
               "default": "Indie+Flower::latin"
             },
             "monospace": {
               "title": "Font",
-              "order": 7,
+              "order": 8,
               "showIf": {
                 "custom[].category": "monospace"
-                },
+              },
               "type": "string",
               "enum": [
                 "Anonymous+Pro:400,400italic,700:latin",
